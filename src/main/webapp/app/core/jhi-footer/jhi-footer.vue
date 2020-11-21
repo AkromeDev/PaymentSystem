@@ -1,59 +1,42 @@
 <template>
-    <div id="footer" class="footer">
-        <div id="footer-section">
-
-            <div id="footer-links">
-                <div class="footer-group">
-                    <h3>Residential</h3>
-                    <a href="">Overview</a>
-                    <a href="">Maintenance Services</a>
-                    <a href="">Installation Services</a>
-                    <a href="">Success Stories</a>
-                </div>
-                <div class="footer-group">
-                    <h3>Commercial</h3>
-                    <a href="">Overview</a>
-                    <a href="">Maintenance Services</a>
-                    <a href="">Construction Services</a>
-                    <a href="">Projects</a>
-                    <a href="">Success Stories</a>
-                </div>
-                <div class="footer-group">
-                    <h3>Company Info</h3>
-                    <a href="">Overview</a>
-                    <a href="">About Us</a>
-                    <a href="">Contact Us</a>
-                    <a href="">Our Team</a>
-                </div> 
-            </div>
-            
-            <div id="footer-text">
-                <div id="footer-contact">
-                    <div>
-                        <span class="nw footer-contact-company-name">Akroma Coorporation. Solutions for a better world</span>
-                        <span class="footer-divider">|</span>
-                        <span class="nw">7755 W. Better Rd., Ste. C</span>
-                        <span class="footer-divider">|</span>
-                        <span class="nw">Yaoundé, CMR 22557</span>
-                    </div>
-                    <div><span class="footer-divider">|</span></div>
-                    <div>
-                        <span class="nw">Phone: <a href="tel:554-754-0666">554-754-0666</a></span>
-                        <span class="footer-divider">|</span>
-                        <span class="nw">Fax: 554-754-0999</span>
-                        <span class="footer-divider">|</span>
-                        <span class="nw">Contractor #: AKROMA-CORP</span>
-                    </div>
-                </div>
-                
-                <div id="footer-copyright">Base content copyright 2020 Akroma & Truth Coorporation. 
-                    All rights reserved. Additional content Copyright 2020 Liz Inc. Solutions for a better world. 
-                    Duplication in part or in while is strictly prohibited.
-                </div>
-            </div>
-
+  <div class="rela-block footer">
+    <div class="rela-block social-buttons-container">
+        <div class="social-button facebook-button"></div>
+        <div class="social-button insta-button"></div>
+        <div class="social-button twitter-button"></div>
+        <div class="social-button pinterest-button"></div>
+    </div>
+    <div class="rela-block footer-links-container">
+        <div class="footer-flex-column">
+            <ul> Projects
+                <li>Chillwave</li>
+                <li>Gluten-free</li>
+                <li>Kitsch Cardigan</li>
+            </ul>
+        </div>
+        <div class="footer-flex-column">
+            <ul> About us
+                <li>Fingerstache</li>
+                <li>Lumbersexual</li>
+                <li>Lo-Fi Aesthitic</li>
+            </ul>
+        </div>
+        <div class="footer-flex-column">
+            <ul> Community
+                <li>Kale Chips</li>
+                <li>Church Key</li>
+                <li>Longboarding</li>
+            </ul>
+        </div>
+        <div class="footer-flex-column">
+            <ul> Connect
+                <li>Pinterest</li>
+                <li>Etsy</li>
+                <li>Blog Swag</li>
+            </ul>
         </div>
     </div>
+  </div>
 </template>
 
 <script lang="ts" src="./jhi-footer.component.ts">
@@ -61,131 +44,123 @@
 
 <style scoped>
 
-#footer-section {
-  padding:40px 0px 40px 0px;
-}
-#footer-links {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+* {transition: 0.8s ease;} 
 
-#footer-section h3 {
-  color:#801b1b;
-  font-size:16px;
-  font-weight:400;
-  padding:0;
-  margin:0px 0px 15px 0px;
+.footer {
+	min-height: 100px;
+	background-color: #282828;
+	box-sizing: border-box;
+	border-top: 6px solid #e78533;
+  color: #fff;
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: -27%;
 }
 
-#footer-section a {
-  color:#5c1818;
-  font-size:14px;
-  line-height:22px;
-  font-weight:300;
-  text-decoration:none;
-  display:block;
+.social-buttons-container {
+	min-height: 100px;
+	width: 100%;
+	max-width: 1000px;
+	margin: 20px auto 0;
+	text-align: center;
 }
 
-#footer-section a:hover {
-  text-decoration:underline;
+.social-button {
+	display: inline-block;
+	position: relative;
+	transform: scale(0.75);
+	height: 75px;
+	width: 75px;
+	background-size: cover !important;
+	transition: 0.3s ease;
+	margin: 14px 2px;
+	cursor: pointer;
 }
 
-.footer-group {
-  display: inline-block;
-  margin:0px 50px 0px 0px;
+.social-button:hover {
+	transform: scale(1);
+	transition: 0.3s cubic-bezier(0.3, 0.2, 0, 2.5);
 }
 
-#footer-text {
-    display:block;
-    justify-content: center;
-    clear:both;
+.social-button.twitter-button {
+	background: url("https://cdn4.iconfinder.com/data/icons/social-icon-4/842/twitter-256.png") no-repeat center;
 }
 
-#footer-contact {
-  color:rgb(10, 6, 6);
-  font-size:12px;
-  font-weight:300;
-  padding:30px 0px 10px 0px;
-  text-align: center;
+.social-button.facebook-button {
+	background: url("https://cdn4.iconfinder.com/data/icons/social-icon-4/842/facebook-256.png") no-repeat center;
 }
 
-#footer-contact div {
-  display:inline;
+.social-button.pinterest-button {
+	background: url("https://cdn4.iconfinder.com/data/icons/social-icon-4/842/pinterest-256.png") no-repeat center;
 }
 
-#footer-contact a {
-  display:inline;
-  color:inherit;
-  font-size:inherit;
-  line-height:inherit;
+.social-button.insta-button {
+	background: url("https://cdn4.iconfinder.com/data/icons/social-icon-4/842/instagram-256.png") no-repeat center;
 }
 
-#footer-copyright {
-  color:#2c2b2b;
-  font-size:11px;
-  font-weight:300;
-  clear:both;
-  text-align: center;
+.footer-links-container {
+	display: flex;
+	width: 90%;
+	max-width: 950px;
+	margin: 30px auto 80px;
+	text-align: center;
 }
 
-#footer-divider {
-  margin: 4px;
-  color: #2c2b2b;
+.footer-links-container .footer-flex-column {
+	position: relative;
+	flex: 1 1 0;
+	text-align: center;
+	border-right: 1px solid #555;
 }
 
-@media screen and (min-width:600px) and (max-width: 999px) {
-  #footer-section h3 {
-    font-size:16px;
-    font-weight:400;
-    margin:0px 0px 15px 0px;
-  }
-
-  #footer-section a {
-    font-size:13px;
-    font-weight:300;
-    line-height:22px;
-  }
-  
-  .footer-group {
-    margin:0px 20px 0px 0px;
-  }
-  
-  #footer-contact div {
-    /* So that the address and phone numbers are on separate lines */
-    display:block;
-  }
-  
-
-  #footer-contact a {
-    display:inline;
-    color:inherit;
-    font-size:inherit;
-    line-height:inherit;
-  }
+.footer-links-container .footer-flex-column:last-child {
+	border: none;
 }
 
-@media screen and (max-width: 599px) {
-  #footer-section {
-    padding:25px 0px 25px 0px;
-  }
-  
-  #footer-section h3 {
-    font-size:20px;
-    font-weight:400;
-    margin:4px 0px 10px 0px;
-  }
+.footer-links-container .footer-flex-column ul {
+	position: relative;
+	width: 100%;
+	max-width: 200px;
+	margin: auto;
+	color: #aaa;
+	font-size: 18px;
+	text-transform: uppercase;
+}
 
-  #footer-section a {
-    font-size:17px;
-    font-weight:300;
-    line-height:28px;
-  }
-  
-  .footer-group {
-    width:300px;
-    margin:0px 20px 20px 0px;
-  }
+.footer-links-container .footer-flex-column li {
+	display: block;
+	position: relative;
+	margin: 15px 7px;
+	color: #666;
+	text-align: center;
+	font-size: 16px;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+.footer-links-container .footer-flex-column li:hover {
+	color: #999;
+}
+
+@media screen and (max-width: 800px) {
+	.fixed-nav-bar .logo {
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.deer-section {
+		min-height: 660px;
+		background-position: right bottom;
+		background-size: 300px 425px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.social-buttons-container {
+		max-width: 200px;
+	}
 }
 
 </style>
