@@ -1,42 +1,42 @@
 <template>
-  <div class="rela-block footer">
-    <div class="rela-block social-buttons-container">
-        <div class="social-button facebook-button"></div>
-        <div class="social-button insta-button"></div>
-        <div class="social-button twitter-button"></div>
-        <div class="social-button pinterest-button"></div>
-    </div>
-    <div class="rela-block footer-links-container">
-        <div class="footer-flex-column">
-            <ul> Projects
-                <li>Chillwave</li>
-                <li>Gluten-free</li>
-                <li>Kitsch Cardigan</li>
-            </ul>
-        </div>
-        <div class="footer-flex-column">
-            <ul> About us
-                <li>Fingerstache</li>
-                <li>Lumbersexual</li>
-                <li>Lo-Fi Aesthitic</li>
-            </ul>
-        </div>
-        <div class="footer-flex-column">
-            <ul> Community
-                <li>Kale Chips</li>
-                <li>Church Key</li>
-                <li>Longboarding</li>
-            </ul>
-        </div>
-        <div class="footer-flex-column">
-            <ul> Connect
-                <li>Pinterest</li>
-                <li>Etsy</li>
-                <li>Blog Swag</li>
-            </ul>
-        </div>
-    </div>
-  </div>
+	<div class="footer">
+		<div class="rela-block social-buttons-container">
+			<div class="social-button facebook-button"></div>
+			<div class="social-button insta-button"></div>
+			<div class="social-button twitter-button"></div>
+			<div class="social-button pinterest-button"></div>
+		</div>
+		<div class="rela-block footer-links-container">
+			<div class="footer-flex-column">
+				<ul> Projects
+					<li>Chillwave</li>
+					<li>Gluten-free</li>
+					<li>Kitsch Cardigan</li>
+				</ul>
+			</div>
+			<div class="footer-flex-column">
+				<ul> About us
+					<li>Fingerstache</li>
+					<li>Lumbersexual</li>
+					<li>Lo-Fi Aesthitic</li>
+				</ul>
+			</div>
+			<div class="footer-flex-column">
+				<ul> Community
+					<li>Kale Chips</li>
+					<li>Church Key</li>
+					<li>Longboarding</li>
+				</ul>
+			</div>
+			<div class="footer-flex-column">
+				<ul> Connect
+					<li>Pinterest</li>
+					<li>Etsy</li>
+					<li>Blog Swag</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" src="./jhi-footer.component.ts">
@@ -51,12 +51,11 @@
 	background-color: #282828;
 	box-sizing: border-box;
 	border-top: 6px solid #e78533;
-  color: #fff;
-  position:absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  margin-bottom: -27%;
+	color: #fff;
+	position: absolute;
+	  bottom: 0;
+	  left: 0;
+  	width: 100%;
 }
 
 .social-buttons-container {
@@ -148,12 +147,6 @@
 	.fixed-nav-bar .logo {
 		left: 50%;
 		transform: translate(-50%, -50%);
-	}
-
-	.deer-section {
-		min-height: 660px;
-		background-position: right bottom;
-		background-size: 300px 425px;
 	}
 }
 
