@@ -33,3 +33,13 @@
 
 <script lang="ts" src="./logs.component.ts">
 </script>
+
+<style scoped>
+    .table-responsive {
+        color: white;
+    }
+
+    .table {
+        color: black;
+    }
+</style>

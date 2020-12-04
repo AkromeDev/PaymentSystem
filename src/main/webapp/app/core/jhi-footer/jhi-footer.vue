@@ -39,7 +39,7 @@
 	</div>
 </template>
 
-<script lang="ts" src="./jhi-myFooter.component.ts">
+<script lang="ts" src="./jhi-footer.component.ts">
 </script>
 
 <style scoped>
