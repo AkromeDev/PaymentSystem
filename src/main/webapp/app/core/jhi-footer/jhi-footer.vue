@@ -1,34 +1,34 @@
 <template>
-	<div class="footer">
+	<div class="myFooter">
 		<div class="rela-block social-buttons-container">
 			<div class="social-button facebook-button"></div>
 			<div class="social-button insta-button"></div>
 			<div class="social-button twitter-button"></div>
 			<div class="social-button pinterest-button"></div>
 		</div>
-		<div class="rela-block footer-links-container">
-			<div class="footer-flex-column">
+		<div class="rela-block myFooter-links-container">
+			<div class="myFooter-flex-column">
 				<ul> Projects
 					<li>Chillwave</li>
 					<li>Gluten-free</li>
 					<li>Kitsch Cardigan</li>
 				</ul>
 			</div>
-			<div class="footer-flex-column">
+			<div class="myFooter-flex-column">
 				<ul> About us
 					<li>Fingerstache</li>
 					<li>Lumbersexual</li>
 					<li>Lo-Fi Aesthitic</li>
 				</ul>
 			</div>
-			<div class="footer-flex-column">
+			<div class="myFooter-flex-column">
 				<ul> Community
 					<li>Kale Chips</li>
 					<li>Church Key</li>
 					<li>Longboarding</li>
 				</ul>
 			</div>
-			<div class="footer-flex-column">
+			<div class="myFooter-flex-column">
 				<ul> Connect
 					<li>Pinterest</li>
 					<li>Etsy</li>
@@ -39,14 +39,14 @@
 	</div>
 </template>
 
-<script lang="ts" src="./jhi-footer.component.ts">
+<script lang="ts" src="./jhi-myFooter.component.ts">
 </script>
 
 <style scoped>
 
 * {transition: 0.8s ease;} 
 
-.footer {
+.myFooter {
 	min-height: 100px;
 	background-color: #363636;
 	border-top: 6px solid #e78533;
@@ -54,7 +54,7 @@
 	position: absolute;
 	  left: 0;
 	  width: 100%;
-	margin-top: 120px;
+	margin-top: 75px;
 }
 
 .social-buttons-container {
@@ -98,7 +98,7 @@
 	background: url("https://cdn4.iconfinder.com/data/icons/social-icon-4/842/instagram-256.png") no-repeat center;
 }
 
-.footer-links-container {
+.myFooter-links-container {
 	display: flex;
 	width: 100%;
 	max-width: 950px;
@@ -107,18 +107,18 @@
 	text-align: center;
 }
 
-.footer-links-container .footer-flex-column {
+.myFooter-links-container .myFooter-flex-column {
 	position: relative;
 	flex: 1 1 0;
 	text-align: center;
 	border-right: 1px solid #555;
 }
 
-.footer-links-container .footer-flex-column:last-child {
+.myFooter-links-container .myFooter-flex-column:last-child {
 	border: none;
 }
 
-.footer-links-container .footer-flex-column ul {
+.myFooter-links-container .myFooter-flex-column ul {
 	position: relative;
 	width: 100%;
 	max-width: 200px;
@@ -128,7 +128,7 @@
 	text-transform: uppercase;
 }
 
-.footer-links-container .footer-flex-column li {
+.myFooter-links-container .myFooter-flex-column li {
 	display: block;
 	position: relative;
 	margin: 15px 7px;
@@ -139,7 +139,7 @@
 	cursor: pointer;
 }
 
-.footer-links-container .footer-flex-column li:hover {
+.myFooter-links-container .myFooter-flex-column li:hover {
 	color: #999;
 }
 

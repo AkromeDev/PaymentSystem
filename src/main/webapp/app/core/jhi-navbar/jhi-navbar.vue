@@ -20,10 +20,10 @@
                 <b-nav-item to="/" exact>
                     <span>
                         <font-awesome-icon icon="home" />
-                        <span>Homes</span>
+                        <span>Home</span>
                     </span>
                 </b-nav-item>
-                <b-nav-item-dropdown
+                    <b-nav-item-dropdown
                     right
                     id="entity-menu"
                     v-if="authenticated"
@@ -32,6 +32,22 @@
                         <font-awesome-icon icon="th-list" />
                         <span>Entities</span>
                     </span>
+                    <b-dropdown-item to="/buddy">
+                        <font-awesome-icon icon="asterisk" />
+                        <span >Buddy</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/contact-relationship">
+                        <font-awesome-icon icon="asterisk" />
+                        <span >ContactRelationship</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/bank-account">
+                        <font-awesome-icon icon="asterisk" />
+                        <span >BankAccount</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/transaction-history">
+                        <font-awesome-icon icon="asterisk" />
+                        <span >TransactionHistory</span>
+                    </b-dropdown-item>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown
