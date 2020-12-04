@@ -1,0 +1,61 @@
+{
+  "name": "Buddy",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "javadoc": "The firstname attribute.",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "balance",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "bankAccount",
+      "otherEntityRelationshipName": "buddy",
+      "relationshipName": "bankAccount"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "contactRelationship",
+      "otherEntityRelationshipName": "buddy",
+      "relationshipName": "contactRelationship"
+    }
+  ],
+  "changelogDate": "20201204082146",
+  "javadoc": "The Buddy entity.",
+  "entityTableName": "buddy",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

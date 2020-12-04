@@ -1,0 +1,60 @@
+/**
+ * The Buddy entity.
+ */
+entity Buddy {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String required,
+	lastName String required,
+	email String required,
+	phoneNumber Long,
+	balance Long
+}
+
+entity ContactRelationship {
+	userId1 Long
+    userId2 Long
+}
+
+entity BankAccount {
+	name String required,
+	iban Long required,
+	bic Long required
+}
+
+entity TransactionHistory {
+	recipientMail String,
+    date Instant,
+	amount Long,
+    description String
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Buddy to BankAccount{buddy},
+}
+
+relationship OneToMany {
+	Buddy to ContactRelationship{buddy}
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+	TransactionHistory{bankAccount} to BankAccount,
+	TransactionHistory{buddy} to Buddy
+}
+
+// Set pagination options
+paginate TransactionHistory, Buddy with infinite-scroll
+paginate BankAccount with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except BankAccount
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
