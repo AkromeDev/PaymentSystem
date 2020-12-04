@@ -26,6 +26,12 @@ const TransactionHistory = () => import('@/entities/transaction-history/transact
 const TransactionHistoryUpdate = () => import('@/entities/transaction-history/transaction-history-update.vue');
 // prettier-ignore
 const TransactionHistoryDetails = () => import('@/entities/transaction-history/transaction-history-details.vue');
+// prettier-ignore
+const MyTransaction = () => import('@/entities/my-transaction/my-transaction.vue');
+// prettier-ignore
+const MyTransactionUpdate = () => import('@/entities/my-transaction/my-transaction-update.vue');
+// prettier-ignore
+const MyTransactionDetails = () => import('@/entities/my-transaction/my-transaction-details.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -99,6 +105,55 @@ export default [
     path: '/bank-account/:bankAccountId/view',
     name: 'BankAccountView',
     component: BankAccountDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/transaction-history',
+    name: 'TransactionHistory',
+    component: TransactionHistory,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/transaction-history/new',
+    name: 'TransactionHistoryCreate',
+    component: TransactionHistoryUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/transaction-history/:transactionHistoryId/edit',
+    name: 'TransactionHistoryEdit',
+    component: TransactionHistoryUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/transaction-history/:transactionHistoryId/view',
+    name: 'TransactionHistoryView',
+    component: TransactionHistoryDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+
+  {
+    path: '/my-transaction',
+    name: 'MyTransaction',
+    component: MyTransaction,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/my-transaction/new',
+    name: 'MyTransactionCreate',
+    component: MyTransactionUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/my-transaction/:myTransactionId/edit',
+    name: 'MyTransactionEdit',
+    component: MyTransactionUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/my-transaction/:myTransactionId/view',
+    name: 'MyTransactionView',
+    component: MyTransactionDetails,
     meta: { authorities: [Authority.USER] },
   },
   {

@@ -1,5 +1,6 @@
 import { IBankAccount } from '@/shared/model/bank-account.model';
 import { IBuddy } from '@/shared/model/buddy.model';
+import { IMyTransaction } from '@/shared/model/my-transaction.model';
 
 export interface ITransactionHistory {
   id?: number;
@@ -9,6 +10,7 @@ export interface ITransactionHistory {
   description?: string;
   bankAccount?: IBankAccount;
   buddy?: IBuddy;
+  myTransactions?: IMyTransaction[];
 }
 
 export class TransactionHistory implements ITransactionHistory {
@@ -19,6 +21,7 @@ export class TransactionHistory implements ITransactionHistory {
     public amount?: number,
     public description?: string,
     public bankAccount?: IBankAccount,
-    public buddy?: IBuddy
+    public buddy?: IBuddy,
+    public myTransactions?: IMyTransaction[]
   ) {}
 }

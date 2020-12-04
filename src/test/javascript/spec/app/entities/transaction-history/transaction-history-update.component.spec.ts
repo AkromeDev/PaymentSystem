@@ -17,6 +17,8 @@ import BankAccountService from '@/entities/bank-account/bank-account.service';
 
 import BuddyService from '@/entities/buddy/buddy.service';
 
+import MyTransactionService from '@/entities/my-transaction/my-transaction.service';
+
 const localVue = createLocalVue();
 
 config.initVueApp(localVue);
@@ -45,6 +47,8 @@ describe('Component Tests', () => {
           bankAccountService: () => new BankAccountService(),
 
           buddyService: () => new BuddyService(),
+
+          myTransactionService: () => new MyTransactionService(),
         },
       });
       comp = wrapper.vm;

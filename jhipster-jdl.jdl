@@ -17,6 +17,12 @@ entity ContactRelationship {
     userId2 Long
 }
 
+
+entity MyTransaction {
+	email String
+    amount Long
+}
+
 entity BankAccount {
 	name String required,
 	iban Long required,
@@ -34,6 +40,10 @@ entity TransactionHistory {
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
 	Buddy to BankAccount{buddy},
+}
+
+relationship ManyToMany {
+	MyTransaction{transactionHistory} to TransactionHistory{myTransaction},
 }
 
 relationship OneToMany {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity MyTransaction.
+    -->
+    <changeSet id="20201204142336-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="my_transaction_id"
+                                 baseTableName="my_transaction_transaction_history"
+                                 constraintName="fk_my_transaction_transaction_history_my_transaction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="my_transaction"/>
+
+        <addForeignKeyConstraint baseColumnNames="transaction_history_id"
+                                 baseTableName="my_transaction_transaction_history"
+                                 constraintName="fk_my_transaction_transaction_history_transaction_history_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transaction_history"/>
+        
+    </changeSet>
+</databaseChangeLog>

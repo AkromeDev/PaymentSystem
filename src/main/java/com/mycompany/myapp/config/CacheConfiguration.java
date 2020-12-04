@@ -49,6 +49,9 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.ContactRelationship.class.getName());
             createCache(cm, com.mycompany.myapp.domain.BankAccount.class.getName());
             createCache(cm, com.mycompany.myapp.domain.TransactionHistory.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.MyTransaction.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.MyTransaction.class.getName() + ".transactionHistories");
+            createCache(cm, com.mycompany.myapp.domain.TransactionHistory.class.getName() + ".myTransactions");
             // jhipster-needle-ehcache-add-entry
         };
     }

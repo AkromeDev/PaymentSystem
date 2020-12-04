@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A TransactionHistory.
@@ -42,6 +45,11 @@ public class TransactionHistory implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Buddy buddy;
+
+    @ManyToMany(mappedBy = "transactionHistories")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnore
+    private Set<MyTransaction> myTransactions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -128,6 +136,31 @@ public class TransactionHistory implements Serializable {
 
     public void setBuddy(Buddy buddy) {
         this.buddy = buddy;
+    }
+
+    public Set<MyTransaction> getMyTransactions() {
+        return myTransactions;
+    }
+
+    public TransactionHistory myTransactions(Set<MyTransaction> myTransactions) {
+        this.myTransactions = myTransactions;
+        return this;
+    }
+
+    public TransactionHistory addMyTransaction(MyTransaction myTransaction) {
+        this.myTransactions.add(myTransaction);
+        myTransaction.getTransactionHistories().add(this);
+        return this;
+    }
+
+    public TransactionHistory removeMyTransaction(MyTransaction myTransaction) {
+        this.myTransactions.remove(myTransaction);
+        myTransaction.getTransactionHistories().remove(this);
+        return this;
+    }
+
+    public void setMyTransactions(Set<MyTransaction> myTransactions) {
+        this.myTransactions = myTransactions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

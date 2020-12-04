@@ -32,6 +32,7 @@ import BuddyService from '@/entities/buddy/buddy.service';
 import ContactRelationshipService from '@/entities/contact-relationship/contact-relationship.service';
 import BankAccountService from '@/entities/bank-account/bank-account.service';
 import TransactionHistoryService from '@/entities/transaction-history/transaction-history.service';
+import MyTransactionService from '@/entities/my-transaction/my-transaction.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -95,6 +96,7 @@ new Vue({
     contactRelationshipService: () => new ContactRelationshipService(),
     bankAccountService: () => new BankAccountService(),
     transactionHistoryService: () => new TransactionHistoryService(),
+    myTransactionService: () => new MyTransactionService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

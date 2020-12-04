@@ -12,6 +12,9 @@ import { IBankAccount } from '@/shared/model/bank-account.model';
 import BuddyService from '../buddy/buddy.service';
 import { IBuddy } from '@/shared/model/buddy.model';
 
+import MyTransactionService from '../my-transaction/my-transaction.service';
+import { IMyTransaction } from '@/shared/model/my-transaction.model';
+
 import AlertService from '@/shared/alert/alert.service';
 import { ITransactionHistory, TransactionHistory } from '@/shared/model/transaction-history.model';
 import TransactionHistoryService from './transaction-history.service';
@@ -40,6 +43,10 @@ export default class TransactionHistoryUpdate extends Vue {
   @Inject('buddyService') private buddyService: () => BuddyService;
 
   public buddies: IBuddy[] = [];
+
+  @Inject('myTransactionService') private myTransactionService: () => MyTransactionService;
+
+  public myTransactions: IMyTransaction[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -131,6 +138,11 @@ export default class TransactionHistoryUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.buddies = res.data;
+      });
+    this.myTransactionService()
+      .retrieve()
+      .then(res => {
+        this.myTransactions = res.data;
       });
   }
 }
