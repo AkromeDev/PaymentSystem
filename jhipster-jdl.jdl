@@ -38,8 +38,12 @@ entity TransactionHistory {
 
 
 // defining multiple OneToMany relationships with comments
-relationship OneToMany {
-	Buddy to BankAccount{buddy},
+relationship OneToOne {
+	Buddy{user} to User{buddy},
+}
+
+relationship OneToOne {
+	Buddy{bankAccount} to BankAccount{buddy},
 }
 
 relationship ManyToMany {

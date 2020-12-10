@@ -34,10 +34,20 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "buddy",
+      "relationshipName": "user",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
       "otherEntityName": "bankAccount",
       "otherEntityRelationshipName": "buddy",
-      "relationshipName": "bankAccount"
+      "relationshipName": "bankAccount",
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "one-to-many",

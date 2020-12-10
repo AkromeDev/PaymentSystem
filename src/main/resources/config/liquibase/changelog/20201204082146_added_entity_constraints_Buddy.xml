@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Buddy.
+    -->
+    <changeSet id="20201204082146-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="buddy"
+                                 constraintName="fk_buddy_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="bank_account_id"
+                                 baseTableName="buddy"
+                                 constraintName="fk_buddy_bank_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bank_account"/>
+
+    </changeSet>
+</databaseChangeLog>

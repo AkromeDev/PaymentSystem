@@ -25,11 +25,11 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "one-to-one",
       "otherEntityName": "buddy",
       "otherEntityRelationshipName": "bankAccount",
       "relationshipName": "buddy",
-      "otherEntityField": "id"
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201204082346",

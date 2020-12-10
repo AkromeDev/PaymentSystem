@@ -28,7 +28,6 @@
                     <th v-on:click="changeOrder('name')"><span>Name</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'name'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('iban')"><span>Iban</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'iban'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('bic')"><span>Bic</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'bic'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('buddy.id')"><span>Buddy</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'buddy.id'"></jhi-sort-indicator></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -41,11 +40,6 @@
                     <td>{{bankAccount.name}}</td>
                     <td>{{bankAccount.iban}}</td>
                     <td>{{bankAccount.bic}}</td>
-                    <td>
-                        <div v-if="bankAccount.buddy">
-                            <router-link :to="{name: 'BuddyView', params: {buddyId: bankAccount.buddy.id}}">{{bankAccount.buddy.id}}</router-link>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <router-link :to="{name: 'BankAccountView', params: {bankAccountId: bankAccount.id}}" tag="button" class="btn btn-info btn-sm details">

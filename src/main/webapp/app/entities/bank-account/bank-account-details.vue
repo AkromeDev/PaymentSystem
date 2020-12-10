@@ -22,14 +22,6 @@
                     <dd>
                         <span>{{bankAccount.bic}}</span>
                     </dd>
-                    <dt>
-                        <span>Buddy</span>
-                    </dt>
-                    <dd>
-                        <div v-if="bankAccount.buddy">
-                            <router-link :to="{name: 'BuddyView', params: {buddyId: bankAccount.buddy.id}}">{{bankAccount.buddy.id}}</router-link>
-                        </div>
-                    </dd>
                 </dl>
                 <button type="submit"
                         v-on:click.prevent="previousState()"

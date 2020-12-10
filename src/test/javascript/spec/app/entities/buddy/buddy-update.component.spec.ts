@@ -9,6 +9,8 @@ import BuddyUpdateComponent from '@/entities/buddy/buddy-update.vue';
 import BuddyClass from '@/entities/buddy/buddy-update.component';
 import BuddyService from '@/entities/buddy/buddy.service';
 
+import UserService from '@/admin/user-management/user-management.service';
+
 import BankAccountService from '@/entities/bank-account/bank-account.service';
 
 import ContactRelationshipService from '@/entities/contact-relationship/contact-relationship.service';
@@ -37,6 +39,8 @@ describe('Component Tests', () => {
         provide: {
           alertService: () => new AlertService(store),
           buddyService: () => buddyServiceStub,
+
+          userService: () => new UserService(),
 
           bankAccountService: () => new BankAccountService(),
 

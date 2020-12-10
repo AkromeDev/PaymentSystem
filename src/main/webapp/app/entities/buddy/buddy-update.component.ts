@@ -2,6 +2,8 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 
 import { numeric, required, minLength, maxLength, minValue, maxValue } from 'vuelidate/lib/validators';
 
+import UserService from '@/admin/user-management/user-management.service';
+
 import BankAccountService from '../bank-account/bank-account.service';
 import { IBankAccount } from '@/shared/model/bank-account.model';
 
@@ -35,6 +37,10 @@ export default class BuddyUpdate extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
   @Inject('buddyService') private buddyService: () => BuddyService;
   public buddy: IBuddy = new Buddy();
+
+  @Inject('userService') private userService: () => UserService;
+
+  public users: Array<any> = [];
 
   @Inject('bankAccountService') private bankAccountService: () => BankAccountService;
 
@@ -101,6 +107,11 @@ export default class BuddyUpdate extends Vue {
   }
 
   public initRelationships(): void {
+    this.userService()
+      .retrieve()
+      .then(res => {
+        this.users = res.data;
+      });
     this.bankAccountService()
       .retrieve()
       .then(res => {

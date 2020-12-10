@@ -180,5 +180,54 @@ export default [
     component: TransactionHistoryDetails,
     meta: { authorities: [Authority.USER] },
   },
+
+  {
+    path: '/buddy',
+    name: 'Buddy',
+    component: Buddy,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/buddy/new',
+    name: 'BuddyCreate',
+    component: BuddyUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/buddy/:buddyId/edit',
+    name: 'BuddyEdit',
+    component: BuddyUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/buddy/:buddyId/view',
+    name: 'BuddyView',
+    component: BuddyDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/bank-account',
+    name: 'BankAccount',
+    component: BankAccount,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/bank-account/new',
+    name: 'BankAccountCreate',
+    component: BankAccountUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/bank-account/:bankAccountId/edit',
+    name: 'BankAccountEdit',
+    component: BankAccountUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/bank-account/:bankAccountId/view',
+    name: 'BankAccountView',
+    component: BankAccountDetails,
+    meta: { authorities: [Authority.USER] },
+  },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here
 ];

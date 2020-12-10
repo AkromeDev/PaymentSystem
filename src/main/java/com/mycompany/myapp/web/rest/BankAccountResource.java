@@ -24,6 +24,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.BankAccount}.
@@ -90,10 +92,18 @@ public class BankAccountResource {
      * {@code GET  /bank-accounts} : get all the bankAccounts.
      *
      * @param pageable the pagination information.
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of bankAccounts in body.
      */
     @GetMapping("/bank-accounts")
-    public ResponseEntity<List<BankAccount>> getAllBankAccounts(Pageable pageable) {
+    public ResponseEntity<List<BankAccount>> getAllBankAccounts(Pageable pageable, @RequestParam(required = false) String filter) {
+        if ("buddy-is-null".equals(filter)) {
+            log.debug("REST request to get all BankAccounts where buddy is null");
+            return new ResponseEntity<>(StreamSupport
+                .stream(bankAccountRepository.findAll().spliterator(), false)
+                .filter(bankAccount -> bankAccount.getBuddy() == null)
+                .collect(Collectors.toList()), HttpStatus.OK);
+        }
         log.debug("REST request to get a page of BankAccounts");
         Page<BankAccount> page = bankAccountRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);

@@ -30,6 +30,8 @@
                     <th v-on:click="changeOrder('email')"><span>Email</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'email'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('phoneNumber')"><span>Phone Number</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'phoneNumber'"></jhi-sort-indicator></th>
                     <th v-on:click="changeOrder('balance')"><span>Balance</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'balance'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('user.id')"><span>User</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'user.id'"></jhi-sort-indicator></th>
+                    <th v-on:click="changeOrder('bankAccount.id')"><span>Bank Account</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'bankAccount.id'"></jhi-sort-indicator></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -44,6 +46,14 @@
                     <td>{{buddy.email}}</td>
                     <td>{{buddy.phoneNumber}}</td>
                     <td>{{buddy.balance}}</td>
+                    <td>
+                        {{buddy.user ? buddy.user.id : ''}}
+                    </td>
+                    <td>
+                        <div v-if="buddy.bankAccount">
+                            <router-link :to="{name: 'BankAccountView', params: {bankAccountId: buddy.bankAccount.id}}">{{buddy.bankAccount.id}}</router-link>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <router-link :to="{name: 'BuddyView', params: {buddyId: buddy.id}}" tag="button" class="btn btn-info btn-sm details">

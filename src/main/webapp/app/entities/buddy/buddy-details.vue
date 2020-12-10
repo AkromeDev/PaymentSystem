@@ -34,6 +34,20 @@
                     <dd>
                         <span>{{buddy.balance}}</span>
                     </dd>
+                    <dt>
+                        <span>User</span>
+                    </dt>
+                    <dd>
+                        {{buddy.user ? buddy.user.id : ''}}
+                    </dd>
+                    <dt>
+                        <span>Bank Account</span>
+                    </dt>
+                    <dd>
+                        <div v-if="buddy.bankAccount">
+                            <router-link :to="{name: 'BankAccountView', params: {bankAccountId: buddy.bankAccount.id}}">{{buddy.bankAccount.id}}</router-link>
+                        </div>
+                    </dd>
                 </dl>
                 <button type="submit"
                         v-on:click.prevent="previousState()"

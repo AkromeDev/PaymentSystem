@@ -50,9 +50,13 @@ public class Buddy implements Serializable {
     @Column(name = "balance")
     private Long balance;
 
-    @OneToMany(mappedBy = "buddy")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<BankAccount> bankAccounts = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private BankAccount bankAccount;
 
     @OneToMany(mappedBy = "buddy")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -132,29 +136,30 @@ public class Buddy implements Serializable {
         this.balance = balance;
     }
 
-    public Set<BankAccount> getBankAccounts() {
-        return bankAccounts;
+    public User getUser() {
+        return user;
     }
 
-    public Buddy bankAccounts(Set<BankAccount> bankAccounts) {
-        this.bankAccounts = bankAccounts;
+    public Buddy user(User user) {
+        this.user = user;
         return this;
     }
 
-    public Buddy addBankAccount(BankAccount bankAccount) {
-        this.bankAccounts.add(bankAccount);
-        bankAccount.setBuddy(this);
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public Buddy bankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
         return this;
     }
 
-    public Buddy removeBankAccount(BankAccount bankAccount) {
-        this.bankAccounts.remove(bankAccount);
-        bankAccount.setBuddy(null);
-        return this;
-    }
-
-    public void setBankAccounts(Set<BankAccount> bankAccounts) {
-        this.bankAccounts = bankAccounts;
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     public Set<ContactRelationship> getContactRelationships() {

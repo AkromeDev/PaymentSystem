@@ -49,6 +49,20 @@
                         <input type="number" class="form-control" name="balance" id="buddy-balance"
                             :class="{'valid': !$v.buddy.balance.$invalid, 'invalid': $v.buddy.balance.$invalid }" v-model.number="$v.buddy.balance.$model" />
                     </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="buddy-user">User</label>
+                        <select class="form-control" id="buddy-user" name="user" v-model="buddy.user">
+                            <option v-bind:value="null"></option>
+                            <option v-bind:value="buddy.user && userOption.id === buddy.user.id ? buddy.user : userOption" v-for="userOption in users" :key="userOption.id">{{userOption.id}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="buddy-bankAccount">Bank Account</label>
+                        <select class="form-control" id="buddy-bankAccount" name="bankAccount" v-model="buddy.bankAccount">
+                            <option v-bind:value="null"></option>
+                            <option v-bind:value="buddy.bankAccount && bankAccountOption.id === buddy.bankAccount.id ? buddy.bankAccount : bankAccountOption" v-for="bankAccountOption in bankAccounts" :key="bankAccountOption.id">{{bankAccountOption.id}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" v-on:click="previousState()">

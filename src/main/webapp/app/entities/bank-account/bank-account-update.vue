@@ -45,13 +45,6 @@
                             </small>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-control-label" for="bank-account-buddy">Buddy</label>
-                        <select class="form-control" id="bank-account-buddy" name="buddy" v-model="bankAccount.buddy">
-                            <option v-bind:value="null"></option>
-                            <option v-bind:value="bankAccount.buddy && buddyOption.id === bankAccount.buddy.id ? bankAccount.buddy : buddyOption" v-for="buddyOption in buddies" :key="buddyOption.id">{{buddyOption.id}}</option>
-                        </select>
-                    </div>
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" v-on:click="previousState()">
