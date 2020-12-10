@@ -1,17 +1,18 @@
 package com.mycompany.myapp.service.impl;
 
-import com.mycompany.myapp.service.BuddyService;
-import com.mycompany.myapp.domain.Buddy;
-import com.mycompany.myapp.repository.BuddyRepository;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import com.mycompany.myapp.domain.Buddy;
+import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.BuddyRepository;
+import com.mycompany.myapp.service.BuddyService;
 
 /**
  * Service Implementation for managing {@link Buddy}.
@@ -53,5 +54,17 @@ public class BuddyServiceImpl implements BuddyService {
     public void delete(Long id) {
         log.debug("Request to delete Buddy : {}", id);
         buddyRepository.deleteById(id);
+    }
+    
+    @Override
+    public void createAutoBuddy(User user) {
+        log.debug("Request to auto create Buddy : {}", user.getId());
+        
+        Buddy buddy = new Buddy();
+        buddy.setFirstName("x");
+        buddy.setLastName("x");
+        buddy.setEmail("x");
+        buddy.setId(user.getId());
+        buddyRepository.save(buddy);
     }
 }

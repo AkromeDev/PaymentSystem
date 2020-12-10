@@ -1,15 +1,13 @@
 package com.mycompany.myapp.service;
 
-import com.mycompany.myapp.config.Constants;
-import com.mycompany.myapp.domain.Authority;
-import com.mycompany.myapp.domain.User;
-import com.mycompany.myapp.repository.AuthorityRepository;
-import com.mycompany.myapp.repository.UserRepository;
-import com.mycompany.myapp.security.AuthoritiesConstants;
-import com.mycompany.myapp.security.SecurityUtils;
-import com.mycompany.myapp.service.dto.UserDTO;
-import com.mycompany.myapp.service.util.RandomUtil;
-import com.mycompany.myapp.web.rest.errors.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +19,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.mycompany.myapp.config.Constants;
+import com.mycompany.myapp.domain.Authority;
+import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.AuthorityRepository;
+import com.mycompany.myapp.repository.BuddyRepository;
+import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.security.AuthoritiesConstants;
+import com.mycompany.myapp.security.SecurityUtils;
+import com.mycompany.myapp.service.dto.UserDTO;
+import com.mycompany.myapp.service.util.RandomUtil;
+import com.mycompany.myapp.web.rest.errors.EmailAlreadyUsedException;
+import com.mycompany.myapp.web.rest.errors.InvalidPasswordException;
+import com.mycompany.myapp.web.rest.errors.LoginAlreadyUsedException;
 
 /**
  * Service class for managing users.
@@ -32,19 +39,22 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserService {
+	
+	private final BuddyService buddyService;
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
-
+    
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
-        this.userRepository = userRepository;
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager, BuddyService buddyService) {
+        this.buddyService = buddyService;
+		this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
@@ -111,7 +121,7 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        // TODO: For the sake of development and the presentation this was put on true instead of false
+        // TODO: XX For the sake of development and the presentation this was put on true instead of false
         newUser.setActivated(true);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
@@ -120,6 +130,7 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
+        buddyService.createAutoBuddy(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }

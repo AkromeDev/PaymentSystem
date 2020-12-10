@@ -1,6 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Buddy;
+import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.BuddyService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
@@ -30,6 +33,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class BuddyResource {
+	
+	private UserRepository userRepository;
 
     private final Logger log = LoggerFactory.getLogger(BuddyResource.class);
 
@@ -97,6 +102,25 @@ public class BuddyResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+    
+    /**
+     * {@code GET  /buddies/view} : get the buddy of the connected user.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the buddy, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/buddies/view")
+    public ResponseEntity<Buddy> getConnectedBuddy() {
+        log.debug("REST request to get Buddy account of the connected user : {}");
+        
+        // TODO: Make this endpoint more beautiful, this is a mess!
+        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().toString());
+        
+        User nuser = user.get();
+        
+        Optional<Buddy> buddy = buddyService.findOne(nuser.getId());
+        return ResponseUtil.wrapOrNotFound(buddy);
+    }
+    
 
     /**
      * {@code GET  /buddies/:id} : get the "id" buddy.

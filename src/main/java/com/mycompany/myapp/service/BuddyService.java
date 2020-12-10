@@ -1,6 +1,7 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Buddy;
+import com.mycompany.myapp.domain.User;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,4 +44,11 @@ public interface BuddyService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /***
+     * create a dummy Buddy for the user 
+     * 
+     * @param newUser being created in UserService
+     */
+	void createAutoBuddy(User newUser);
 }
