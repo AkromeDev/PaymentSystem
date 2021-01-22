@@ -6,9 +6,10 @@
             <div class="col-md-9">
 
             <h1 class="display-4">Welcome to PayMyBuddy!</h1>
-            <p class="lead">The app that will falicitate your transactions with all your friends.</p>
+            <p class="lead">Send & recieve money to your contacts</p>
 
             <p>
+                The app that will falicitate your transactions with all your friends.
                 Our goal is to simplify money transaction, with our app you will be able to:
             </p>
 
