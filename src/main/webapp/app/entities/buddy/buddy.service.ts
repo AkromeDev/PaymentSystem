@@ -20,6 +20,20 @@ export default class BuddyService {
     });
   }
 
+  public get(): Promise<IBuddy> {
+    return new Promise<IBuddy>((resolve, reject) => {
+      console.log("This is being called XX");
+      axios
+        .get(`${baseApiUrl}/view`)
+        .then(res => {
+          resolve(res.data);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
   public retrieve(paginationQuery?: any): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       axios

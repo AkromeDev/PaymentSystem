@@ -9,6 +9,8 @@ const BuddyUpdate = () => import('@/entities/buddy/buddy-update.vue');
 // prettier-ignore
 const BuddyDetails = () => import('@/entities/buddy/buddy-details.vue');
 // prettier-ignore
+const BuddyActive = () => import('@/entities/buddy/buddy-active.vue');
+// prettier-ignore
 const ContactRelationship = () => import('@/entities/contact-relationship/contact-relationship.vue');
 // prettier-ignore
 const ContactRelationshipUpdate = () => import('@/entities/contact-relationship/contact-relationship-update.vue');
@@ -57,6 +59,13 @@ export default [
     path: '/buddy/:buddyId/view',
     name: 'BuddyView',
     component: BuddyDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    // This is my new page XXX
+    path: '/buddy/view',
+    name: 'BuddyActiveView',
+    component:  BuddyActive,
     meta: { authorities: [Authority.USER] },
   },
   {
