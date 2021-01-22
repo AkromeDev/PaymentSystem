@@ -57,14 +57,24 @@ public class BuddyServiceImpl implements BuddyService {
     }
     
     @Override
-    public void createAutoBuddy(User user) {
+    public Buddy createAutoBuddy(User user) {
         log.debug("Request to auto create Buddy : {}", user.getId());
         
+        // TODO: XX find an alternative to this
         Buddy buddy = new Buddy();
-        buddy.setFirstName("x");
+        buddy.setFirstName(user.getLogin());
         buddy.setLastName("x");
-        buddy.setEmail("x");
+        buddy.setEmail(user.getEmail());
         buddy.setId(user.getId());
         buddyRepository.save(buddy);
+        
+        return buddy;
     }
+
+	@Override
+	public Optional<Buddy> findOneByFirstName(String firstName) {
+		log.debug("Request to find Buddy from first name: {}", firstName);
+        return buddyRepository.findOneByFirstName(firstName);
+    }
+	
 }

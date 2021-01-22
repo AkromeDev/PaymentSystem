@@ -50,5 +50,12 @@ public interface BuddyService {
      * 
      * @param newUser being created in UserService
      */
-	void createAutoBuddy(User newUser);
+	Buddy createAutoBuddy(User newUser);
+	
+	/***
+	 * 
+	 * @param firstName
+	 * @return Buddy
+	 */
+	Optional<Buddy> findOneByFirstName(String firstName);
 }

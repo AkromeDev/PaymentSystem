@@ -112,13 +112,26 @@ public class BuddyResource {
     public ResponseEntity<Buddy> getConnectedBuddy() {
         log.debug("REST request to get Buddy account of the connected user : {}");
         
-        // TODO: Make this endpoint more beautiful, this is a mess!
-        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().toString());
+        Optional<String> userLogin = SecurityUtils.getCurrentUserLogin();
         
-        User nuser = user.get();
+        log.debug("TEEESt for user: " + userLogin.get());
         
-        Optional<Buddy> buddy = buddyService.findOne(nuser.getId());
+        String userLoginn = userLogin.get();
+        
+        log.debug("TEEESt for user: " + userLoginn);
+        
+        Optional<Buddy> buddy = buddyService.findOneByFirstName(userLoginn);
+        
+        // TODO: Make this endpoint more beautiful, this is a mess! and correct the NullPointer exception
+//        Optional<User> user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().toString());
+//        log.debug("TEEESt for user " + user);
+//        
+//        User nuser = user.get();
+//        
+//        Optional<Buddy> buddy = buddyService.findOne(nuser.getId());
+        
         return ResponseUtil.wrapOrNotFound(buddy);
+//        return ResponseEntity.ok().body(page.getContent());
     }
     
 
