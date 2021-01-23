@@ -1,15 +1,26 @@
 package com.mycompany.myapp.security;
 
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Optional;
+import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.service.UserService;
+import com.mycompany.myapp.service.util.StaticContextAccessor;
+import com.mycompany.myapp.web.rest.BankAccountResource;
 
 /**
  * Utility class for Spring Security.
  */
 public final class SecurityUtils {
+	
+	private final static Logger log = LoggerFactory.getLogger(BankAccountResource.class);
+	
+	static UserService userRepo = StaticContextAccessor.getBean(UserService.class);
 
     private SecurityUtils() {
     }
@@ -31,6 +42,29 @@ public final class SecurityUtils {
                 }
                 return null;
             });
+    }
+    
+    /***
+     * Get the Id of the current user.
+     * 
+     * @return Optional Long: The Id of the user using the website
+     */
+    public static Optional<Long> getCurrentUserId() {
+    	
+    	// TODO: make that beautiful please my man!
+    	Optional<String> userLogin = getCurrentUserLogin();
+    	
+    	log.debug("where is it bugging? userLogin: " + userLogin );
+    	
+    	Optional<User> user = userRepo.getUserWithAuthoritiesByLogin(userLogin.get());
+    	
+    	log.debug("where is it bugging? user: " + user );
+    	
+    	Optional<Long> id = Optional.ofNullable(user.get().getId());
+    	
+    	log.debug("where is it bugging? id: " + id );
+    	
+    	return id;
     }
 
     /**
