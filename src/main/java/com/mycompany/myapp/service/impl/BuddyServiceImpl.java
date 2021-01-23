@@ -9,8 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mycompany.myapp.domain.BankAccount;
 import com.mycompany.myapp.domain.Buddy;
 import com.mycompany.myapp.domain.User;
+import com.mycompany.myapp.repository.BankAccountRepository;
 import com.mycompany.myapp.repository.BuddyRepository;
 import com.mycompany.myapp.service.BuddyService;
 
@@ -24,9 +26,12 @@ public class BuddyServiceImpl implements BuddyService {
     private final Logger log = LoggerFactory.getLogger(BuddyServiceImpl.class);
 
     private final BuddyRepository buddyRepository;
+    
+    private final BankAccountRepository bankAccountRepo;
 
-    public BuddyServiceImpl(BuddyRepository buddyRepository) {
+    public BuddyServiceImpl(BuddyRepository buddyRepository, BankAccountRepository bankAccountRepo) {
         this.buddyRepository = buddyRepository;
+        this.bankAccountRepo = bankAccountRepo;
     }
 
     @Override
@@ -60,15 +65,31 @@ public class BuddyServiceImpl implements BuddyService {
     public Buddy createAutoBuddy(User user) {
         log.debug("Request to auto create Buddy : {}", user.getId());
         
-        // TODO: XX find an alternative to this
         Buddy buddy = new Buddy();
+        
         buddy.setFirstName(user.getLogin());
         buddy.setLastName("x");
         buddy.setEmail(user.getEmail());
         buddy.setId(user.getId());
         buddyRepository.save(buddy);
         
+        createAutoBankAccount(user.getId());
+        
         return buddy;
+    }
+    
+    @Override
+    public void createAutoBankAccount(Long id) {
+    	log.debug("Request to auto create Bank Account with id : {}", id);
+    	
+    	BankAccount bankAccount = new BankAccount();
+    	
+    	bankAccount.setBic(00L);
+    	bankAccount.setIban(00L);
+    	bankAccount.setName("x");
+    	bankAccount.setId(id);
+    	
+    	bankAccountRepo.save(bankAccount);
     }
 
 	@Override
