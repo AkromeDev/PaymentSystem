@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BuddyRepository extends JpaRepository<Buddy, Long> {
 
-	@Query(value = "select buddy.* from BUDDY buddy where buddy.ID = 1", nativeQuery = true)
+	@Query(value = "select buddy.* from BUDDY buddy where buddy.FIRST_NAME=:firstName", nativeQuery = true)
 	Optional<Buddy> findOneByFirstName(@Param("firstName")String firstName);
 }
 
