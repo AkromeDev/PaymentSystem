@@ -58,4 +58,11 @@ public interface BuddyService {
 	 * @return Buddy
 	 */
 	Optional<Buddy> findOneByFirstName(String firstName);
+
+	/***
+	 * 
+	 * @param id
+	 * creates a dummy BankAccount for the user 
+	 */
+	void createAutoBankAccount(Long id);
 }
