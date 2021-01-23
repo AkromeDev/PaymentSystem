@@ -5,7 +5,7 @@
                 <h2 class="jh-entity-heading"><span>Buddy</span> {{buddy.id}}</h2>
                 <dl class="row jh-entity-details">
                     <dt>
-                        <span>Lala Name</span>
+                        <span>First Name</span>
                     </dt>
                     <dd>
                         <span>{{buddy.firstName}}</span>
@@ -55,6 +55,9 @@
                     <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span> Back</span>
                 </button>
                 <router-link v-if="buddy.id" :to="{name: 'BuddyEdit', params: {buddyId: buddy.id}}" tag="button" class="btn btn-primary">
+                    <font-awesome-icon icon="pencil-alt"></font-awesome-icon>&nbsp;<span> Edit</span>
+                </router-link>
+                <router-link v-else :to="{name: 'BuddyCreate'}" tag="button" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-buddy">
                     <font-awesome-icon icon="pencil-alt"></font-awesome-icon>&nbsp;<span> Edit</span>
                 </router-link>
             </div>
