@@ -9,5 +9,12 @@ export interface IBankAccount {
 }
 
 export class BankAccount implements IBankAccount {
-  constructor(public id?: number, public name?: string, public iban?: number, public bic?: number, public buddy?: IBuddy) {}
+  constructor(
+    public id?: number, 
+    public name?: string, 
+    public iban?: number, 
+    public bic?: number, 
+    public buddy?: IBuddy
+    ) 
+    {}
 }
