@@ -1,7 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.BankAccount;
+import com.mycompany.myapp.domain.Buddy;
 import com.mycompany.myapp.repository.BankAccountRepository;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -134,5 +136,16 @@ public class BankAccountResource {
         log.debug("REST request to delete BankAccount : {}", id);
         bankAccountRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+    
+    @GetMapping("/bank-accounts/view")
+    public ResponseEntity<BankAccount> getConnectedBankAccount() {
+        log.debug("REST request to get BankAccount of the connected user : {}");
+        
+        Optional<Long> userId = SecurityUtils.getCurrentUserId();
+        
+        Optional<BankAccount> bankAccount = bankAccountRepository.findById(userId.get());
+        
+        return ResponseUtil.wrapOrNotFound(bankAccount);
     }
 }
