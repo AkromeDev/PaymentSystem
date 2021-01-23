@@ -23,6 +23,8 @@ const BankAccountUpdate = () => import('@/entities/bank-account/bank-account-upd
 // prettier-ignore
 const BankAccountDetails = () => import('@/entities/bank-account/bank-account-details.vue');
 // prettier-ignore
+const BankAccountActive = () => import('@/entities/bank-account/bank-account-active.vue');
+// prettier-ignore
 const TransactionHistory = () => import('@/entities/transaction-history/transaction-history.vue');
 // prettier-ignore
 const TransactionHistoryUpdate = () => import('@/entities/transaction-history/transaction-history-update.vue');
@@ -62,7 +64,7 @@ export default [
     meta: { authorities: [Authority.USER] },
   },
   {
-    // This is my new page XXX
+    // This is my new page for the buddy entity
     path: '/buddy/view',
     name: 'BuddyActiveView',
     component:  BuddyActive,
@@ -114,6 +116,13 @@ export default [
     path: '/bank-account/:bankAccountId/view',
     name: 'BankAccountView',
     component: BankAccountDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    // This is my new page for the bank account entity
+    path: '/bank-account/view',
+    name: 'BankAccountActiveView',
+    component:  BankAccountActive,
     meta: { authorities: [Authority.USER] },
   },
   {
