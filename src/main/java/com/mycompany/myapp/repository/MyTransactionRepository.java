@@ -26,4 +26,7 @@ public interface MyTransactionRepository extends JpaRepository<MyTransaction, Lo
 
     @Query("select myTransaction from MyTransaction myTransaction left join fetch myTransaction.transactionHistories where myTransaction.id =:id")
     Optional<MyTransaction> findOneWithEagerRelationships(@Param("id") Long id);
+
+    @Query(value = "select MY_TRANSACTION.* from MY_TRANSACTION MY_TRANSACTION where MY_TRANSACTION.id=:id", nativeQuery = true)
+	List<MyTransaction> findAllFromUser(@Param("id")Long id);
 }
