@@ -1,6 +1,7 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.ContactRelationship;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.ContactRelationshipService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
@@ -82,10 +83,22 @@ public class ContactRelationshipResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contactRelationships in body.
      */
-    @GetMapping("/contact-relationships")
+    // TODO The "s" was deleted at the end of the path. This will create some errors in the tests, change the tests to keep this endpoint working.
+    @GetMapping("/contact-relationship")
     public List<ContactRelationship> getAllContactRelationships() {
         log.debug("REST request to get all ContactRelationships");
         return contactRelationshipService.findAll();
+    }
+    
+    /**
+     * {@code GET  /contact-relationships} : get all the contactRelationships from the current user.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contactRelationships in body.
+     */
+    @GetMapping("/contact-relationships")
+    public List<ContactRelationship> getAllContactRelationshipsFromCurrentUser() {
+        log.debug("REST request to get all ContactRelationships");
+        return contactRelationshipService.findAllFromUser(SecurityUtils.getCurrentUserId());
     }
 
     /**
