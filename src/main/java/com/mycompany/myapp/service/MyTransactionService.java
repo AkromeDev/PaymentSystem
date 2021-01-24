@@ -50,4 +50,6 @@ public interface MyTransactionService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+	List<MyTransaction> findAllFromUser(Optional<Long> currentUserId);
 }
