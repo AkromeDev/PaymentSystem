@@ -24,6 +24,13 @@ public interface ContactRelationshipService {
      * @return the list of entities.
      */
     List<ContactRelationship> findAll();
+    
+    /**
+     * Get all the contactRelationships from the current user.
+     *
+     * @return the list of entities.
+     */
+    List<ContactRelationship> findAllFromUser(Optional<Long> optional);
 
 
     /**

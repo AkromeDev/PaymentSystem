@@ -3,6 +3,8 @@ package com.mycompany.myapp.service.impl;
 import com.mycompany.myapp.service.ContactRelationshipService;
 import com.mycompany.myapp.domain.ContactRelationship;
 import com.mycompany.myapp.repository.ContactRelationshipRepository;
+import com.mycompany.myapp.security.SecurityUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +32,7 @@ public class ContactRelationshipServiceImpl implements ContactRelationshipServic
     @Override
     public ContactRelationship save(ContactRelationship contactRelationship) {
         log.debug("Request to save ContactRelationship : {}", contactRelationship);
+        contactRelationship.setId(SecurityUtils.getCurrentUserId().get());
         return contactRelationshipRepository.save(contactRelationship);
     }
 
@@ -38,6 +41,13 @@ public class ContactRelationshipServiceImpl implements ContactRelationshipServic
     public List<ContactRelationship> findAll() {
         log.debug("Request to get all ContactRelationships");
         return contactRelationshipRepository.findAll();
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<ContactRelationship> findAllFromUser(Optional<Long> id) {
+    	log.debug("Request to get all ContactRelationships from the current user");
+    	return contactRelationshipRepository.findAllFromUser(id.get());
     }
 
 
