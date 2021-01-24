@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mycompany.myapp.domain.Buddy;
 import com.mycompany.myapp.domain.MyTransaction;
+import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.MyTransactionService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 
@@ -95,10 +96,23 @@ public class MyTransactionResource {
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of myTransactions in body.
      */
-    @GetMapping("/my-transactions")
+    // TODO the s was taken away, that will screw up the tests. Fix them!
+    @GetMapping("/my-transaction")
     public List<MyTransaction> getAllMyTransactions(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all MyTransactions");
         return myTransactionService.findAll();
+    }
+    
+    /**
+     * {@code GET  /my-transactions} : get all the myTransactions.
+     *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of myTransactions in body.
+     */
+    @GetMapping("/my-transactions")
+    public List<MyTransaction> getAllMyTransactionsFromCurrentUser(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+        log.debug("REST request to get all MyTransactions");
+        return myTransactionService.findAllFromUser(SecurityUtils.getCurrentUserId());
     }
 
     /**
