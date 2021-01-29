@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <form name="editForm" role="form" novalidate v-on:submit.prevent="save()" >
-                <h2 id="paymentSystemApp.myTransaction.home.createOrEditLabel">Create or edit a MyTransaction</h2>
+                <h2 id="paymentSystemApp.myTransaction.home.createOrEditLabel">Send Money to a contact</h2>
                 <div>
                     <div class="form-group" v-if="myTransaction.id">
                         <label for="id">ID</label>
@@ -19,12 +19,12 @@
                         <input type="number" class="form-control" name="amount" id="my-transaction-amount"
                             :class="{'valid': !$v.myTransaction.amount.$invalid, 'invalid': $v.myTransaction.amount.$invalid }" v-model.number="$v.myTransaction.amount.$model" />
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="my-transaction-transactionHistory">Transaction History</label>
                         <select class="form-control" id="my-transaction-transactionHistory" multiple name="transactionHistory" v-model="myTransaction.transactionHistories">
                             <option v-bind:value="getSelected(myTransaction.transactionHistories, transactionHistoryOption)" v-for="transactionHistoryOption in transactionHistories" :key="transactionHistoryOption.id">{{transactionHistoryOption.id}}</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" v-on:click="previousState()">
