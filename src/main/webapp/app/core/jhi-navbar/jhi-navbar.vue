@@ -30,27 +30,27 @@
                     active-class="active" class="pointer">
                     <span slot="button-content" class="navbar-dropdown-menu">
                         <font-awesome-icon icon="th-list" />
-                        <span>Entities</span>
+                        <span>Services</span>
                     </span>
-                    <b-dropdown-item to="/buddy">
+                    <b-dropdown-item to="/buddy/view">
                         <font-awesome-icon icon="asterisk" />
-                        <span >Buddy</span>
+                        <span >Buddy Account</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/bank-account/view">
+                        <font-awesome-icon icon="asterisk" />
+                        <span >Bank Account</span>
                     </b-dropdown-item>
                     <b-dropdown-item to="/contact-relationship">
                         <font-awesome-icon icon="asterisk" />
-                        <span >ContactRelationship</span>
+                        <span >Contacts</span>
                     </b-dropdown-item>
-                    <b-dropdown-item to="/bank-account">
-                        <font-awesome-icon icon="asterisk" />
-                        <span >BankAccount</span>
-                    </b-dropdown-item>
-                    <b-dropdown-item to="/transaction-history">
+                    <!-- <b-dropdown-item to="/transaction-history">
                         <font-awesome-icon icon="asterisk" />
                         <span >TransactionHistory</span>
-                    </b-dropdown-item>
+                    </b-dropdown-item> -->
                     <b-dropdown-item to="/my-transaction">
                         <font-awesome-icon icon="asterisk" />
-                        <span >MyTransaction</span>
+                        <span >Transactions</span>
                     </b-dropdown-item>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </b-nav-item-dropdown>
