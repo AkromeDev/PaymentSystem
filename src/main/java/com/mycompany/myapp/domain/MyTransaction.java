@@ -20,6 +20,7 @@ public class MyTransaction implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
@@ -28,15 +29,21 @@ public class MyTransaction implements Serializable {
 
     @Column(name = "amount")
     private Long amount;
+    
+    @Column(name = "userid")
+    private Long userid;
+    
+    @Column(name = "description")
+    private String description;
 
-    @ManyToMany
+	@ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinTable(name = "my_transaction_transaction_history",
                joinColumns = @JoinColumn(name = "my_transaction_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "transaction_history_id", referencedColumnName = "id"))
     private Set<TransactionHistory> transactionHistories = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+	// jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -70,6 +77,22 @@ public class MyTransaction implements Serializable {
     public void setAmount(Long amount) {
         this.amount = amount;
     }
+    
+    public Long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+	
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
     public Set<TransactionHistory> getTransactionHistories() {
         return transactionHistories;
