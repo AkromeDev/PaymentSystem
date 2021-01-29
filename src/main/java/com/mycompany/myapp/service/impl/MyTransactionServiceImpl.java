@@ -33,7 +33,9 @@ public class MyTransactionServiceImpl implements MyTransactionService {
     @Override
     public MyTransaction save(MyTransaction myTransaction) {
         log.debug("Request to save MyTransaction : {}", myTransaction);
-        myTransaction.setId(SecurityUtils.getCurrentUserId().get());
+        myTransaction.setUserid(SecurityUtils.getCurrentUserId().get());
+        myTransactionRepository.updateRecieverBalance(myTransaction.getAmount(), myTransaction.getEmail());
+        myTransactionRepository.updateSenderBalance(myTransaction.getAmount(), myTransaction.getUserid());
         return myTransactionRepository.save(myTransaction);
     }
 
