@@ -11,6 +11,7 @@ import ContactRelationshipService from '../contact-relationship/contact-relation
 import { IContactRelationship } from '@/shared/model/contact-relationship.model';
 
 import AlertService from '@/shared/alert/alert.service';
+import AlertMixin from '@/shared/alert/alert.mixin';
 import { IBuddy, Buddy } from '@/shared/model/buddy.model';
 import BuddyService from './buddy.service';
 
@@ -50,6 +51,8 @@ export default class BuddyUpdate extends Vue {
 
   public contactRelationships: IContactRelationship[] = [];
   public isSaving = false;
+  public errorMessage = false;
+  public message = '';
   public currentLanguage = '';
 
   beforeRouteEnter(to, from, next) {
@@ -81,6 +84,11 @@ export default class BuddyUpdate extends Vue {
           this.$router.go(-1);
           const message = 'A Buddy is updated with identifier ' + param.id;
           this.alertService().showAlert(message, 'info');
+        }, reason => {
+          this.isSaving = false;
+          // this.$router.go(0);
+          this.errorMessage = true;
+          this.message = 'Please provide valid Bank account information before changing your balance.';
         });
     } else {
       this.buddyService()
@@ -123,4 +131,6 @@ export default class BuddyUpdate extends Vue {
         this.contactRelationships = res.data;
       });
   }
+
+  mixins:[AlertMixin]
 }
