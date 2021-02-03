@@ -11,12 +11,10 @@ export default class BankAccountActive extends Vue {
   beforeRouteEnter(to, from, next) {
     next(vm => {
         vm.getBankAccount();
-        console.log("This is being called XX");
     });
   }
 
   public getBankAccount() {
-    console.log("This is being called ZZ");
     this.bankAccountService()
       .get()
       .then(res => {
