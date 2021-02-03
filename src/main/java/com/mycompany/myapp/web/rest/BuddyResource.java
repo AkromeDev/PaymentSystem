@@ -54,10 +54,10 @@ public class BuddyResource {
      *
      * @param buddy the buddy to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new buddy, or with status {@code 400 (Bad Request)} if the buddy has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws Exception 
      */
     @PostMapping("/buddies")
-    public ResponseEntity<Buddy> createBuddy(@Valid @RequestBody Buddy buddy) throws URISyntaxException {
+    public ResponseEntity<Buddy> createBuddy(@Valid @RequestBody Buddy buddy) throws Exception {
         log.debug("REST request to save Buddy : {}", buddy);
         if (buddy.getId() != null) {
             throw new BadRequestAlertException("A new buddy cannot already have an ID", ENTITY_NAME, "idexists");
@@ -75,10 +75,10 @@ public class BuddyResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated buddy,
      * or with status {@code 400 (Bad Request)} if the buddy is not valid,
      * or with status {@code 500 (Internal Server Error)} if the buddy couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws Exception 
      */
     @PutMapping("/buddies")
-    public ResponseEntity<Buddy> updateBuddy(@Valid @RequestBody Buddy buddy) throws URISyntaxException {
+    public ResponseEntity<Buddy> updateBuddy(@Valid @RequestBody Buddy buddy) throws Exception {
         log.debug("REST request to update Buddy : {}", buddy);
         if (buddy.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
