@@ -35,8 +35,21 @@ public class BuddyServiceImpl implements BuddyService {
     }
 
     @Override
-    public Buddy save(Buddy buddy) {
+    public Buddy save(Buddy buddy) throws Exception {
         log.debug("Request to save Buddy : {}", buddy);
+        if (buddy.getBalance() > 0) {
+        	
+        	Buddy originalBuddy = buddyRepository.findOneByFirstName(buddy.getFirstName()).get();
+        	if (buddy.getBalance() != originalBuddy.getBalance()) {
+        		
+        		Long bic = buddyRepository.getBic(buddy.getId());
+        		Long iban = buddyRepository.getBankAccount(buddy.getId());
+        		if (bic==0 || iban==0) {
+        			
+        			throw new Exception ("You must first enter valid BankAccount information before adding funds to your Buddy Account");
+        		}
+        	}
+        }
         return buddyRepository.save(buddy);
     }
 
@@ -71,23 +84,24 @@ public class BuddyServiceImpl implements BuddyService {
         buddy.setLastName("x");
         buddy.setEmail(user.getEmail());
         buddy.setId(user.getId());
+        buddy.setBalance(0L);
         buddyRepository.save(buddy);
         
-        createAutoBankAccount(user.getId());
+        createAutoBankAccount(user);
         
         return buddy;
     }
     
     @Override
-    public void createAutoBankAccount(Long id) {
-    	log.debug("Request to auto create Bank Account with id : {}", id);
+    public void createAutoBankAccount(User user) {
+    	log.debug("Request to auto create Bank Account with id : {}", user.getId());
     	
     	BankAccount bankAccount = new BankAccount();
     	
-    	bankAccount.setBic(00L);
-    	bankAccount.setIban(00L);
-    	bankAccount.setName("x");
-    	bankAccount.setId(id);
+    	bankAccount.setBic(0L);
+    	bankAccount.setIban(0L);
+    	bankAccount.setName(user.getLogin());
+    	bankAccount.setId(user.getId());
     	
     	bankAccountRepo.save(bankAccount);
     }
