@@ -18,8 +18,9 @@ public interface BuddyService {
      *
      * @param buddy the entity to save.
      * @return the persisted entity.
+     * @throws Exception 
      */
-    Buddy save(Buddy buddy);
+    Buddy save(Buddy buddy) throws Exception;
 
     /**
      * Get all the buddies.
@@ -64,5 +65,5 @@ public interface BuddyService {
 	 * @param id
 	 * creates a dummy BankAccount for the user 
 	 */
-	void createAutoBankAccount(Long id);
+	void createAutoBankAccount(User user);
 }
