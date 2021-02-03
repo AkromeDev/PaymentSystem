@@ -2,13 +2,11 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <form name="editForm" role="form" novalidate v-on:submit.prevent="save()" >
-                <h2 id="paymentSystemApp.buddy.home.createOrEditLabel">Create or edit a Buddy</h2>
+                <h2 id="paymentSystemApp.buddy.home.createOrEditLabel">Edit your Buddy account</h2>
+                <div class="alert alert-danger" v-if="errorMessage">
+                    <span v-if="errorMessage">Error: "{{message}}"</span>
+                </div>
                 <div>
-                    <div class="form-group" v-if="buddy.id">
-                        <label for="id">ID</label>
-                        <input type="text" class="form-control" id="id" name="id"
-                               v-model="buddy.id" readonly />
-                    </div>
                     <div class="form-group">
                         <label class="form-control-label" for="buddy-firstName">First Name</label>
                         <input type="text" class="form-control" name="firstName" id="buddy-firstName"
@@ -39,30 +37,30 @@
                             </small>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="form-control-label" for="buddy-phoneNumber">Phone Number</label>
                         <input type="number" class="form-control" name="phoneNumber" id="buddy-phoneNumber"
                             :class="{'valid': !$v.buddy.phoneNumber.$invalid, 'invalid': $v.buddy.phoneNumber.$invalid }" v-model.number="$v.buddy.phoneNumber.$model" />
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label class="form-control-label" for="buddy-balance">Balance</label>
                         <input type="number" class="form-control" name="balance" id="buddy-balance"
                             :class="{'valid': !$v.buddy.balance.$invalid, 'invalid': $v.buddy.balance.$invalid }" v-model.number="$v.buddy.balance.$model" />
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="form-control-label" for="buddy-user">User</label>
                         <select class="form-control" id="buddy-user" name="user" v-model="buddy.user">
                             <option v-bind:value="null"></option>
                             <option v-bind:value="buddy.user && userOption.id === buddy.user.id ? buddy.user : userOption" v-for="userOption in users" :key="userOption.id">{{userOption.id}}</option>
                         </select>
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                    <!-- <div class="form-group">
                         <label class="form-control-label" for="buddy-bankAccount">Bank Account</label>
                         <select class="form-control" id="buddy-bankAccount" name="bankAccount" v-model="buddy.bankAccount">
                             <option v-bind:value="null"></option>
                             <option v-bind:value="buddy.bankAccount && bankAccountOption.id === buddy.bankAccount.id ? buddy.bankAccount : bankAccountOption" v-for="bankAccountOption in bankAccounts" :key="bankAccountOption.id">{{bankAccountOption.id}}</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" v-on:click="previousState()">
