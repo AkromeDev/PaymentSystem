@@ -22,7 +22,6 @@ export default class BuddyService {
 
   public get(): Promise<IBuddy> {
     return new Promise<IBuddy>((resolve, reject) => {
-      console.log("This is being called XX");
       axios
         .get(`${baseApiUrl}/view`)
         .then(res => {
