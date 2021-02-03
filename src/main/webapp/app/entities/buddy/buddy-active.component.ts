@@ -11,12 +11,10 @@ export default class BuddyActive extends Vue {
   beforeRouteEnter(to, from, next) {
     next(vm => {
         vm.getBuddy();
-        console.log("This is being called XX");
     });
   }
 
   public getBuddy() {
-    console.log("This is being called ZZ");
     this.buddyService()
       .get()
       .then(res => {
