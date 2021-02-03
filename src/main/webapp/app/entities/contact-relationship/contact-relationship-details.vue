@@ -2,27 +2,19 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <div v-if="contactRelationship">
-                <h2 class="jh-entity-heading"><span>ContactRelationship</span> {{contactRelationship.id}}</h2>
+                <h2 class="jh-entity-heading"><span>Contact: </span> {{contactRelationship.name}}</h2>
                 <dl class="row jh-entity-details">
                     <dt>
-                        <span>User Id 1</span>
+                        <span>Email</span>
                     </dt>
                     <dd>
-                        <span>{{contactRelationship.userId1}}</span>
+                        <span>{{contactRelationship.email}}</span>
                     </dd>
                     <dt>
-                        <span>User Id 2</span>
+                        <span>name</span>
                     </dt>
                     <dd>
-                        <span>{{contactRelationship.userId2}}</span>
-                    </dd>
-                    <dt>
-                        <span>Buddy</span>
-                    </dt>
-                    <dd>
-                        <div v-if="contactRelationship.buddy">
-                            <router-link :to="{name: 'BuddyView', params: {buddyId: contactRelationship.buddy.id}}">{{contactRelationship.buddy.id}}</router-link>
-                        </div>
+                        <span>{{contactRelationship.name}}</span>
                     </dd>
                 </dl>
                 <button type="submit"
