@@ -212,6 +212,27 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 }
 
 /* ==========================================================================
+entity Text and background colors
+========================================================================== */
+
+.row {
+  color: $text-primary;
+}
+
+.table-striped {
+  background-color: $dark-primary;
+}
+
+.table thead th {
+  color: $text-primary;
+  border-bottom: 2px solid $text-primary;
+}
+
+#page-heading {
+  color: $text-title;
+}
+
+/* ==========================================================================
 entity detail page css
 ========================================================================== */
 .row.jh-entity-details {
