@@ -22,7 +22,6 @@ export default class BankAccountService {
 
   public get(): Promise<IBankAccount> {
     return new Promise<IBankAccount>((resolve, reject) => {
-      console.log("This is being called XX");
       axios
         .get(`${baseApiUrl}/view`)
         .then(res => {
