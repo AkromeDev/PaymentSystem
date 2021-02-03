@@ -43,10 +43,10 @@ public class ContactRelationshipResource {
      *
      * @param contactRelationship the contactRelationship to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new contactRelationship, or with status {@code 400 (Bad Request)} if the contactRelationship has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws Exception 
      */
     @PostMapping("/contact-relationships")
-    public ResponseEntity<ContactRelationship> createContactRelationship(@RequestBody ContactRelationship contactRelationship) throws URISyntaxException {
+    public ResponseEntity<ContactRelationship> createContactRelationship(@RequestBody ContactRelationship contactRelationship) throws Exception {
         log.debug("REST request to save ContactRelationship : {}", contactRelationship);
         if (contactRelationship.getId() != null) {
             throw new BadRequestAlertException("A new contactRelationship cannot already have an ID", ENTITY_NAME, "idexists");
@@ -64,10 +64,10 @@ public class ContactRelationshipResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated contactRelationship,
      * or with status {@code 400 (Bad Request)} if the contactRelationship is not valid,
      * or with status {@code 500 (Internal Server Error)} if the contactRelationship couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws Exception 
      */
     @PutMapping("/contact-relationships")
-    public ResponseEntity<ContactRelationship> updateContactRelationship(@RequestBody ContactRelationship contactRelationship) throws URISyntaxException {
+    public ResponseEntity<ContactRelationship> updateContactRelationship(@RequestBody ContactRelationship contactRelationship) throws Exception {
         log.debug("REST request to update ContactRelationship : {}", contactRelationship);
         if (contactRelationship.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
