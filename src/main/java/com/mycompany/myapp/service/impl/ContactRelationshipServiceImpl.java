@@ -30,9 +30,20 @@ public class ContactRelationshipServiceImpl implements ContactRelationshipServic
     }
 
     @Override
-    public ContactRelationship save(ContactRelationship contactRelationship) {
+    public ContactRelationship save(ContactRelationship contactRelationship) throws Exception {
         log.debug("Request to save ContactRelationship : {}", contactRelationship);
-        contactRelationship.setId(SecurityUtils.getCurrentUserId().get());
+        contactRelationship.setUserId1(SecurityUtils.getCurrentUserId().get());
+        
+        String userEmail = contactRelationshipRepository.checkIfEmailExists(contactRelationship.getEmail());
+        
+        if (userEmail != null) {
+        contactRelationship.setEmail(userEmail);
+        contactRelationship.setName(contactRelationshipRepository.getNameFromEmail(contactRelationship.getEmail()));
+        
+        } else {
+        	throw new Exception ("There is no no account registered under: " + userEmail);
+        }
+        
         return contactRelationshipRepository.save(contactRelationship);
     }
 
