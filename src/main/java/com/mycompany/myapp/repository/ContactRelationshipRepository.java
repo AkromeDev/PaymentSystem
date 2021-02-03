@@ -16,7 +16,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContactRelationshipRepository extends JpaRepository<ContactRelationship, Long> {
 
-	@Query(value = "select CONTACT_RELATIONSHIP.* from CONTACT_RELATIONSHIP CONTACT_RELATIONSHIP where CONTACT_RELATIONSHIP.id=:id", nativeQuery = true)
+	@Query(value = "select CONTACT_RELATIONSHIP.* from CONTACT_RELATIONSHIP CONTACT_RELATIONSHIP where CONTACT_RELATIONSHIP.USER_ID_1=:id", nativeQuery = true)
 	List<ContactRelationship> findAllFromUser(@Param("id")Long id);
+
+	@Query(value = "select email from BUDDY where buddy.email=:email", nativeQuery = true)
+    String checkIfEmailExists(@Param("email")String email);
+	
+	@Query(value = "select FIRST_NAME from BUDDY where buddy.email=:email", nativeQuery = true)
+	String getNameFromEmail(@Param("email")String email);
 	
 }
