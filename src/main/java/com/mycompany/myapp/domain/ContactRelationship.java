@@ -19,6 +19,7 @@ public class ContactRelationship implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
@@ -27,7 +28,13 @@ public class ContactRelationship implements Serializable {
 
     @Column(name = "user_id_2")
     private Long userId2;
-
+    
+    @Column(name = "name")
+    private String name;
+    
+	@Column(name = "email")
+    private String email;
+    
     @ManyToOne
     @JsonIgnoreProperties(value = "contactRelationships", allowSetters = true)
     private Buddy buddy;
@@ -79,6 +86,23 @@ public class ContactRelationship implements Serializable {
     public void setBuddy(Buddy buddy) {
         this.buddy = buddy;
     }
+    
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
