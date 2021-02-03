@@ -31,12 +31,23 @@ public class MyTransactionServiceImpl implements MyTransactionService {
     }
 
     @Override
-    public MyTransaction save(MyTransaction myTransaction) {
+    public MyTransaction save(MyTransaction myTransaction) throws Exception {
         log.debug("Request to save MyTransaction : {}", myTransaction);
         myTransaction.setUserid(SecurityUtils.getCurrentUserId().get());
-        myTransactionRepository.updateRecieverBalance(myTransaction.getAmount(), myTransaction.getEmail());
-        myTransactionRepository.updateSenderBalance(myTransaction.getAmount(), myTransaction.getUserid());
-        return myTransactionRepository.save(myTransaction);
+        
+        Long actualBalance = myTransactionRepository.checkSenderBalance(myTransaction.getUserid());
+        String recieverEmail = myTransactionRepository.checkIfEmailExists(myTransaction.getEmail());
+        
+	        if (actualBalance > myTransaction.getAmount() && recieverEmail != null) {
+	        
+		        myTransactionRepository.updateRecieverBalance(myTransaction.getAmount(), myTransaction.getEmail());
+		        myTransactionRepository.updateSenderBalance(myTransaction.getAmount(), myTransaction.getUserid());
+		        
+	        } else {
+	        	throw new Exception ("Inssuficient funds or wrong email. Your balance is currently of : " + actualBalance + "€");
+	        }
+        
+	    return myTransactionRepository.save(myTransaction);
     }
 
     @Override
