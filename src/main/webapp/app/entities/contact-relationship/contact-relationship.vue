@@ -25,9 +25,8 @@
                 <thead>
                 <tr>
                     <th><span>ID</span></th>
-                    <th><span>User Id 1</span></th>
-                    <th><span>User Id 2</span></th>
-                    <th><span>Buddy</span></th>
+                    <th><span>email</span></th>
+                    <th><span>name</span></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -37,13 +36,8 @@
                     <td>
                         <router-link :to="{name: 'ContactRelationshipView', params: {contactRelationshipId: contactRelationship.id}}">{{contactRelationship.id}}</router-link>
                     </td>
-                    <td>{{contactRelationship.userId1}}</td>
-                    <td>{{contactRelationship.userId2}}</td>
-                    <td>
-                        <div v-if="contactRelationship.buddy">
-                            <router-link :to="{name: 'BuddyView', params: {buddyId: contactRelationship.buddy.id}}">{{contactRelationship.buddy.id}}</router-link>
-                        </div>
-                    </td>
+                    <td>{{contactRelationship.email}}</td>
+                    <td>{{contactRelationship.name}}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <router-link :to="{name: 'ContactRelationshipView', params: {contactRelationshipId: contactRelationship.id}}" tag="button" class="btn btn-info btn-sm details">
