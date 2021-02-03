@@ -30,6 +30,12 @@ public interface MyTransactionRepository extends JpaRepository<MyTransaction, Lo
     @Query(value = "select MY_TRANSACTION.* from MY_TRANSACTION MY_TRANSACTION where MY_TRANSACTION.userid=:id", nativeQuery = true)
 	List<MyTransaction> findAllFromUser(@Param("id")Long id);
     
+    @Query(value = "select balance from BUDDY where buddy.id=:userid", nativeQuery = true)
+	Long checkSenderBalance(@Param("userid")Long userid);
+    
+    @Query(value = "select email from BUDDY where buddy.email=:email", nativeQuery = true)
+    String checkIfEmailExists(@Param("email")String email);
+    
     @Modifying
     @Query(value = "update buddy set balance = balance+:amount where buddy.email=:email", nativeQuery = true)
 	void updateRecieverBalance(@Param("amount") Long amount, @Param("email") String email);
@@ -37,4 +43,5 @@ public interface MyTransactionRepository extends JpaRepository<MyTransaction, Lo
     @Modifying
     @Query(value = "update buddy set balance = balance-:amount where buddy.id=:userid", nativeQuery = true)
 	void updateSenderBalance(@Param("amount") Long amount, @Param("userid") Long userid);
+
 }
