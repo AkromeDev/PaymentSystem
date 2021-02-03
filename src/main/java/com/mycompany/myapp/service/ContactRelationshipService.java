@@ -15,8 +15,9 @@ public interface ContactRelationshipService {
      *
      * @param contactRelationship the entity to save.
      * @return the persisted entity.
+     * @throws Exception if the email given by the user does not belong to a buddy account.
      */
-    ContactRelationship save(ContactRelationship contactRelationship);
+    ContactRelationship save(ContactRelationship contactRelationship) throws Exception;
 
     /**
      * Get all the contactRelationships.
