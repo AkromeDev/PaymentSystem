@@ -6,6 +6,8 @@ import TransactionHistoryService from '../transaction-history/transaction-histor
 import { ITransactionHistory } from '@/shared/model/transaction-history.model';
 
 import AlertService from '@/shared/alert/alert.service';
+import AlertMixin from '@/shared/alert/alert.mixin';
+import Vue2Filters from 'vue2-filters';
 import { IMyTransaction, MyTransaction } from '@/shared/model/my-transaction.model';
 import MyTransactionService from './my-transaction.service';
 
@@ -13,11 +15,13 @@ const validations: any = {
   myTransaction: {
     email: {},
     amount: {},
+    description: {},
   },
 };
 
 @Component({
   validations,
+  mixins: [Vue2Filters.mixin],
 })
 export default class MyTransactionUpdate extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
@@ -29,6 +33,7 @@ export default class MyTransactionUpdate extends Vue {
   public transactionHistories: ITransactionHistory[] = [];
   public isSaving = false;
   public currentLanguage = '';
+  mixins: [AlertMixin];
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -67,8 +72,13 @@ export default class MyTransactionUpdate extends Vue {
         .then(param => {
           this.isSaving = false;
           this.$router.go(-1);
-          const message = 'A MyTransaction is created with identifier ' + param.id;
+          const message = param.amount + '€ were sent to ' + param.email;
           this.alertService().showAlert(message, 'success');
+        }, reason => {
+          this.isSaving = false;
+          this.$router.go(-1);
+          const message = 'The transaction could not be completed, please check your balance in buddy account and if the email is correct.';
+          this.alertService().showAlert(message, 'danger');
         });
     }
   }
