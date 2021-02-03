@@ -13,6 +13,8 @@ const validations: any = {
   contactRelationship: {
     userId1: {},
     userId2: {},
+    email: {},
+    name: {},
   },
 };
 
@@ -57,7 +59,7 @@ export default class ContactRelationshipUpdate extends Vue {
         .then(param => {
           this.isSaving = false;
           this.$router.go(-1);
-          const message = 'A ContactRelationship is updated with identifier ' + param.id;
+          const message = 'A contact is updated with email ' + param.email;
           this.alertService().showAlert(message, 'info');
         });
     } else {
@@ -66,8 +68,13 @@ export default class ContactRelationshipUpdate extends Vue {
         .then(param => {
           this.isSaving = false;
           this.$router.go(-1);
-          const message = 'A ContactRelationship is created with identifier ' + param.id;
+          const message = param.email + ' has been added to your contacts ';
           this.alertService().showAlert(message, 'success');
+        }, reason => {
+          this.isSaving = false;
+          this.$router.go(-1);
+          const message = 'There is no PayMyBuddy account using the email you entered: ' + this.contactRelationship.email;
+          this.alertService().showAlert(message, 'danger');
         });
     }
   }
