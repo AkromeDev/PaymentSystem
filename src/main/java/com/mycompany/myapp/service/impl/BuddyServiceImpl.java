@@ -43,7 +43,7 @@ public class BuddyServiceImpl implements BuddyService {
         	if (buddy.getBalance() != originalBuddy.getBalance()) {
         		
         		Long bic = buddyRepository.getBic(buddy.getId());
-        		Long iban = buddyRepository.getBankAccount(buddy.getId());
+        		Long iban = buddyRepository.getIban(buddy.getId());
         		if (bic==0 || iban==0) {
         			
         			throw new Exception ("You must first enter valid BankAccount information before adding funds to your Buddy Account");
