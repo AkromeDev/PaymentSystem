@@ -55,10 +55,10 @@ public class MyTransactionResource {
      *
      * @param myTransaction the myTransaction to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new myTransaction, or with status {@code 400 (Bad Request)} if the myTransaction has already an ID.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws Exception is thrown when the balance of the user is lower than the amount of money he tries to send.
      */
     @PostMapping("/my-transactions")
-    public ResponseEntity<MyTransaction> createMyTransaction(@RequestBody MyTransaction myTransaction) throws URISyntaxException {
+    public ResponseEntity<MyTransaction> createMyTransaction(@RequestBody MyTransaction myTransaction) throws Exception {
         log.debug("REST request to save MyTransaction : {}", myTransaction);
         if (myTransaction.getId() != null) {
             throw new BadRequestAlertException("A new myTransaction cannot already have an ID", ENTITY_NAME, "idexists");
@@ -76,10 +76,10 @@ public class MyTransactionResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated myTransaction,
      * or with status {@code 400 (Bad Request)} if the myTransaction is not valid,
      * or with status {@code 500 (Internal Server Error)} if the myTransaction couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @throws Exception is thrown when the balance of the user is lower than the amount of money he tries to send.
      */
     @PutMapping("/my-transactions")
-    public ResponseEntity<MyTransaction> updateMyTransaction(@RequestBody MyTransaction myTransaction) throws URISyntaxException {
+    public ResponseEntity<MyTransaction> updateMyTransaction(@RequestBody MyTransaction myTransaction) throws Exception {
         log.debug("REST request to update MyTransaction : {}", myTransaction);
         if (myTransaction.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -142,7 +142,7 @@ public class MyTransactionResource {
     }
     
     @PostMapping("/make-transactions")
-    public ResponseEntity<MyTransaction> makeMyTransaction(@RequestBody MyTransaction myTransaction) throws URISyntaxException {
+    public ResponseEntity<MyTransaction> makeMyTransaction(@RequestBody MyTransaction myTransaction) throws Exception {
         log.debug("REST request to make a MyTransaction : {}", myTransaction);
         if (myTransaction.getId() != null) {
             throw new BadRequestAlertException("A new myTransaction cannot already have an ID", ENTITY_NAME, "idexists");
