@@ -18,8 +18,9 @@ public interface MyTransactionService {
      *
      * @param myTransaction the entity to save.
      * @return the persisted entity.
+     * @throws Exception 
      */
-    MyTransaction save(MyTransaction myTransaction);
+    MyTransaction save(MyTransaction myTransaction) throws Exception;
 
     /**
      * Get all the myTransactions.
