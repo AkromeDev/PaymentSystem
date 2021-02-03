@@ -43,7 +43,7 @@ public class ContactRelationshipResource {
      *
      * @param contactRelationship the contactRelationship to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new contactRelationship, or with status {@code 400 (Bad Request)} if the contactRelationship has already an ID.
-     * @throws Exception 
+     * @throws EURISyntaxException if the Location URI syntax is incorrect & Exception if the email does not exist.
      */
     @PostMapping("/contact-relationships")
     public ResponseEntity<ContactRelationship> createContactRelationship(@RequestBody ContactRelationship contactRelationship) throws Exception {
