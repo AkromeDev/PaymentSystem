@@ -5,8 +5,17 @@ export interface IContactRelationship {
   userId1?: number;
   userId2?: number;
   buddy?: IBuddy;
+  email?: string;
+  name?: string;
 }
 
 export class ContactRelationship implements IContactRelationship {
-  constructor(public id?: number, public userId1?: number, public userId2?: number, public buddy?: IBuddy) {}
+  constructor(
+    public id?: number, 
+    public userId1?: number, 
+    public userId2?: number, 
+    public buddy?: IBuddy, 
+    email?: string, 
+    name?: string) 
+    {}
 }
