@@ -8,5 +8,10 @@ export interface IMyTransaction {
 }
 
 export class MyTransaction implements IMyTransaction {
-  constructor(public id?: number, public email?: string, public amount?: number, public transactionHistories?: ITransactionHistory[]) {}
+  constructor(
+    public id?: number, 
+    public email?: string, 
+    public amount?: number, 
+    public transactionHistories?: ITransactionHistory[])
+    {}
 }
