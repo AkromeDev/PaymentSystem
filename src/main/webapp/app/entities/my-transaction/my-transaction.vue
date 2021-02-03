@@ -24,21 +24,18 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th><span>ID</span></th>
                     <th><span>Email</span></th>
                     <th><span>Amount</span></th>
-                    <th><span>Transaction History</span></th>
+                    <th><span>Description</span></th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="myTransaction in myTransactions"
                     :key="myTransaction.id">
-                    <td>
-                        <router-link :to="{name: 'MyTransactionView', params: {myTransactionId: myTransaction.id}}">{{myTransaction.id}}</router-link>
-                    </td>
                     <td>{{myTransaction.email}}</td>
                     <td>{{myTransaction.amount}}</td>
+                    <td>{{myTransaction.description}}</td>
                     <td>
                         <span v-for="(transactionHistory, i) in myTransaction.transactionHistories" :key="transactionHistory.id">{{i > 0 ? ', ' : ''}}
                             <router-link class="form-control-static" :to="{name: 'TransactionHistoryView', params: {transactionHistoryId: transactionHistory.id}}">{{transactionHistory.id}}</router-link>
@@ -50,10 +47,10 @@
                                 <font-awesome-icon icon="eye"></font-awesome-icon>
                                 <span class="d-none d-md-inline">View</span>
                             </router-link>
-                            <router-link :to="{name: 'MyTransactionEdit', params: {myTransactionId: myTransaction.id}}"  tag="button" class="btn btn-primary btn-sm edit">
+                            <!-- <router-link :to="{name: 'MyTransactionEdit', params: {myTransactionId: myTransaction.id}}"  tag="button" class="btn btn-primary btn-sm edit">
                                 <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                                 <span class="d-none d-md-inline">Edit</span>
-                            </router-link>
+                            </router-link> -->
                             <b-button v-on:click="prepareRemove(myTransaction)"
                                    variant="danger"
                                    class="btn btn-sm"
