@@ -143,6 +143,7 @@ public class MyTransaction implements Serializable {
             "id=" + getId() +
             ", email='" + getEmail() + "'" +
             ", amount=" + getAmount() +
+            ", description=" + getDescription() +
             "}";
     }
 }
